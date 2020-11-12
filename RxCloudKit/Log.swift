@@ -10,7 +10,7 @@ import os.log
 
 @available(iOS 10, *)
 struct Log {
-    fileprivate static let subsystem: String = Bundle.main.bundleIdentifier ?? ""
+    fileprivate static let subsystem: String = "RxCloudKit" // Bundle.main.bundleIdentifier ?? ""
     
     static let cache = OSLog(subsystem: subsystem, category: "cache")
 }
