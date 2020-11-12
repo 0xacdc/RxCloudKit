@@ -9,6 +9,7 @@
 import RxSwift
 import CloudKit
 
+@available(iOS 10, *)
 public extension Reactive where Base: CKSubscription {
 
     func save(in database: CKDatabase) -> Maybe<CKSubscription> {
