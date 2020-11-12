@@ -10,6 +10,7 @@ import os.log
 import RxSwift
 import CloudKit
 
+@available(iOS 10, *)
 public protocol CacheDelegate {
     // private db
     func cache(record: CKRecord)
@@ -19,6 +20,7 @@ public protocol CacheDelegate {
     func query(notification: CKQueryNotification, fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
 }
 
+@available(iOS 10, *)
 public final class Cache {
 
     static let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
