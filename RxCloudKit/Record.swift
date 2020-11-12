@@ -9,6 +9,7 @@
 import CloudKit
 import ObjectiveC
 
+@available(iOS 10, *)
 public protocol RxCKRecord {
 
     /** record type */
@@ -42,6 +43,7 @@ public protocol RxCKRecord {
 
 //var AssociatedObjectHandle: UInt8 = 0
 
+@available(iOS 10, *)
 public extension RxCKRecord {
 
 //    public var metadata: Data? {
