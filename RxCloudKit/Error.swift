@@ -8,6 +8,7 @@
 
 import RxSwift
 
+@available(iOS 10, *)
 public enum SerializationError: Error {
     case structRequired
     case unknownEntity(name: String)
