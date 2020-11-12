@@ -9,6 +9,7 @@
 import RxSwift
 import CloudKit
 
+@available(iOS 10, *)
 public enum RecordModifyEvent {
     case progress(CKRecord, Double) // save progress
     case result(CKRecord, Error?) // save result
@@ -16,6 +17,7 @@ public enum RecordModifyEvent {
     case deleted([CKRecord.ID])
 }
 
+@available(iOS 10, *)
 final class RecordModifier {
     
     typealias Observer = AnyObserver<RecordModifyEvent>
