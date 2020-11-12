@@ -10,8 +10,10 @@
 import UIKit
 import CloudKit
 
+@available(iOS 10, *)
 public typealias ZoneTokenMap = [CKRecordZone.ID: CKServerChangeToken]
 
+@available(iOS 10, *)
 public final class Local {
 
     private let defaults = UserDefaults.standard
