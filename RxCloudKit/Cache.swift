@@ -9,6 +9,7 @@
 import os.log
 import RxSwift
 import CloudKit
+import UIKit
 
 @available(iOS 10, *)
 public protocol CacheDelegate {
