@@ -67,7 +67,6 @@ final class ZoneChangeFetcher {
     
     private func fetch() {
         let operation = CKFetchDatabaseChangesOperation(previousServerChangeToken: self.serverChangeToken)
-        let operation = CKFetchDatabaseChangesOperation(previousServerChangeToken: self.serverChangeToken)
         operation.resultsLimit = self.limit
         operation.fetchAllChanges = true
         operation.qualityOfService = .userInitiated
