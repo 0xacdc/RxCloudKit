@@ -9,6 +9,7 @@
 import RxSwift
 import CloudKit
 
+@available(iOS 10, *)
 final class RecordFetcher {
     
     typealias Observer = AnyObserver<CKRecord>
