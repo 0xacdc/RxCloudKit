@@ -9,6 +9,7 @@
 import RxSwift
 import CloudKit
 
+@available(iOS 10, *)
 public extension Reactive where Base: CKRecordZone {
 
     static func fetch(with recordZoneID: CKRecordZone.ID, in database: CKDatabase) -> Maybe<CKRecordZone> {
