@@ -94,15 +94,19 @@ final class RecordChangeFetcher {
     }
     
     private func fetch() {
-        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: self.recordZoneIDs, optionsByRecordZoneID: self.optionsByRecordZoneID)
-        operation.fetchAllChanges = true
-        operation.qualityOfService = .userInitiated
-        operation.recordChangedBlock = self.recordChangedBlock
-        operation.recordWithIDWasDeletedBlock = self.recordWithIDWasDeletedBlock
-        operation.recordZoneChangeTokensUpdatedBlock = self.recordZoneChangeTokensUpdatedBlock
-        operation.recordZoneFetchCompletionBlock = self.recordZoneFetchCompletionBlock
-        operation.fetchRecordZoneChangesCompletionBlock = self.fetchRecordZoneChangesCompletionBlock
-        self.database.add(operation)
+        if #available(iOS 10.0, *) {
+            let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: self.recordZoneIDs, optionsByRecordZoneID: self.optionsByRecordZoneID)
+            operation.fetchAllChanges = true
+            operation.qualityOfService = .userInitiated
+            operation.recordChangedBlock = self.recordChangedBlock
+            operation.recordWithIDWasDeletedBlock = self.recordWithIDWasDeletedBlock
+            operation.recordZoneChangeTokensUpdatedBlock = self.recordZoneChangeTokensUpdatedBlock
+            operation.recordZoneFetchCompletionBlock = self.recordZoneFetchCompletionBlock
+            operation.fetchRecordZoneChangesCompletionBlock = self.fetchRecordZoneChangesCompletionBlock
+            self.database.add(operation)
+        } else {
+            fatalError("iOS version < 10.0")
+        }
     }
     
 }
