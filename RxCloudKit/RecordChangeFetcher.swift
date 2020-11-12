@@ -9,12 +9,14 @@
 import RxSwift
 import CloudKit
 
+@available(iOS 10, *)
 public enum RecordEvent {
     case changed(CKRecord)
     case deleted(CKRecord.ID)
     case token(CKRecordZone.ID, CKServerChangeToken)
 }
 
+@available(iOS 10, *)
 final class RecordChangeFetcher {
     
     typealias Observer = AnyObserver<RecordEvent>
@@ -94,19 +96,15 @@ final class RecordChangeFetcher {
     }
     
     private func fetch() {
-        if #available(iOS 10.0, *) {
-            let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: self.recordZoneIDs, optionsByRecordZoneID: self.optionsByRecordZoneID)
-            operation.fetchAllChanges = true
-            operation.qualityOfService = .userInitiated
-            operation.recordChangedBlock = self.recordChangedBlock
-            operation.recordWithIDWasDeletedBlock = self.recordWithIDWasDeletedBlock
-            operation.recordZoneChangeTokensUpdatedBlock = self.recordZoneChangeTokensUpdatedBlock
-            operation.recordZoneFetchCompletionBlock = self.recordZoneFetchCompletionBlock
-            operation.fetchRecordZoneChangesCompletionBlock = self.fetchRecordZoneChangesCompletionBlock
-            self.database.add(operation)
-        } else {
-            fatalError("iOS version < 10.0")
-        }
+        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: self.recordZoneIDs, optionsByRecordZoneID: self.optionsByRecordZoneID)
+        operation.fetchAllChanges = true
+        operation.qualityOfService = .userInitiated
+        operation.recordChangedBlock = self.recordChangedBlock
+        operation.recordWithIDWasDeletedBlock = self.recordWithIDWasDeletedBlock
+        operation.recordZoneChangeTokensUpdatedBlock = self.recordZoneChangeTokensUpdatedBlock
+        operation.recordZoneFetchCompletionBlock = self.recordZoneFetchCompletionBlock
+        operation.fetchRecordZoneChangesCompletionBlock = self.fetchRecordZoneChangesCompletionBlock
+        self.database.add(operation)
     }
     
 }
