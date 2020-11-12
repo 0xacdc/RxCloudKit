@@ -64,14 +64,19 @@ final class ZoneChangeFetcher {
     // MARK:- custom
     
     private func fetch() {
-        let operation = CKFetchDatabaseChangesOperation(previousServerChangeToken: self.serverChangeToken)
-        operation.resultsLimit = self.limit
-        operation.fetchAllChanges = true
-        operation.qualityOfService = .userInitiated
-        operation.changeTokenUpdatedBlock = self.changeTokenUpdatedBlock
-        operation.recordZoneWithIDChangedBlock = self.recordZoneWithIDChangedBlock
-        operation.recordZoneWithIDWasDeletedBlock = self.recordZoneWithIDWasDeletedBlock
-        self.database.add(operation)
+        if #available(iOS 10.0, *) {
+            let operation = CKFetchDatabaseChangesOperation(previousServerChangeToken: self.serverChangeToken)
+            let operation = CKFetchDatabaseChangesOperation(previousServerChangeToken: self.serverChangeToken)
+            operation.resultsLimit = self.limit
+            operation.fetchAllChanges = true
+            operation.qualityOfService = .userInitiated
+            operation.changeTokenUpdatedBlock = self.changeTokenUpdatedBlock
+            operation.recordZoneWithIDChangedBlock = self.recordZoneWithIDChangedBlock
+            operation.recordZoneWithIDWasDeletedBlock = self.recordZoneWithIDWasDeletedBlock
+            self.database.add(operation)
+        } else {
+            fatalError("iOS version < 10.0")
+        }
     }
     
 }
