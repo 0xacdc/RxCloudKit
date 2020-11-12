@@ -8,6 +8,7 @@
 
 import os.log
 
+@available(iOS 10, *)
 struct Log {
     fileprivate static let subsystem: String = Bundle.main.bundleIdentifier ?? ""
     
