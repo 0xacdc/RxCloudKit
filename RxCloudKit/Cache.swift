@@ -116,15 +116,15 @@ public final class Cache {
         }
         
         switch notificationType {
-        case CKNotificationType.query:
+        case CKNotification.NotificationType.query:
             let queryNotification = notification as! CKQueryNotification
             self.delegate.query(notification: queryNotification, fetchCompletionHandler: completionHandler)
-        case CKNotificationType.database:
+        case CKNotification.NotificationType.database:
             self.fetchDatabaseChanges(fetchCompletionHandler: completionHandler)
-        case CKNotificationType.readNotification:
+        case CKNotification.NotificationType.readNotification:
             // TODO
             break
-        case CKNotificationType.recordZone:
+        case CKNotification.NotificationType.recordZone:
             // TODO
             break
         default:
